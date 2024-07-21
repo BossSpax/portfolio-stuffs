@@ -1,7 +1,6 @@
 --[[
-This module serves as a faster dynamic array with constant time removals and insertions. 
-Slower than normal arrays if data isn't being updated often due to function call overhead.
-Also uses more memory because it uses a hash map to store indices along side the main array.
+This module serves as a faster dynamic array with constant time removals and insertions.
+Slower than normal arrays in some situations, notably when the amount of values is small or data is not being removed often. Also uses more memory.
 ]]
 
 type ArraySet = {
@@ -16,7 +15,7 @@ function ArraySet.create(): ArraySet
 	return {
 		values = {},
 		hashMap = {},
-		size = 0
+		size = 0 -- so we do not have to recalculate the array size on insertions
 	}
 end
 
